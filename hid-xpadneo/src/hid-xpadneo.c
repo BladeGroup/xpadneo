@@ -313,6 +313,7 @@ static int xpadneo_initDevice(struct hid_device *hdev)
 	ff_package.ff = ff_clear;
 
 	/* 'HELLO' FROM THE OTHER SIDE */
+        spin_lock_init(&xdata->lock);
 	if (!disable_ff) {
 		ff_package.report_id = 0x03;
 		ff_package.ff.magnitude_right = 0x80;
