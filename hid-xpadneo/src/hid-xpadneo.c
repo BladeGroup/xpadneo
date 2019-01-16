@@ -1041,17 +1041,17 @@ int xpadneo_event(struct hid_device *hdev, struct hid_field *field,
 	struct input_dev *idev = xdata->idev;
 
 
-	hid_dbg_lvl(DBG_LVL_ALL, hdev,
-		"hid-up: %02x, hid-usg: %02x, input-code: %02x, value: %02x\n",
-		(usage->hid & HID_USAGE_PAGE), (usage->hid & HID_USAGE),
-		usage->code, value);
-
 
 	// we have to shift the range of the analogues sticks (ABS_X/Y/RX/RY)
 	// as already explained in xpadneo_input_configured() above
 
 	u16 usg_type = usage->type;
 	u16 usg_code = usage->code;
+
+	hid_dbg_lvl(DBG_LVL_ALL, hdev,
+		"hid-up: %02x, hid-usg: %02x, input-code: %02x, value: %02x\n",
+		(usage->hid & HID_USAGE_PAGE), (usage->hid & HID_USAGE),
+		usage->code, value);
 
 	if (usg_type == EV_ABS) {
 		if (usg_code == ABS_X || usg_code == ABS_Y
